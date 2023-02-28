@@ -15,6 +15,7 @@ import Header from './components/Header';
 import Menu from './components/Menu';
 import Resume from './components/Resume';
 import LeafletMap from './components/LeafletMap';
+import D3Demos from './components/D3Demos';
 import { useAppSelector, useAppDispatch } from './app/hooks';
 import './style.css';
 
@@ -78,6 +79,8 @@ export default function App() {
       >
         {activeButton === 'leaflet' ? (
           <LeafletMap />
+        ) : activeButton === 'd3' ? (
+          <D3Demos />
         ) : activeButton === 'resume' ? (
           <Resume />
         ) : (

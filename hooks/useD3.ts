@@ -1,7 +1,8 @@
 import * as React from 'react';
-import * as d3 from 'https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.2/d3.min.js';
+import * as d3 from 'd3';
 
 type RenderChartFn = (
+  // @ts-ignore
   selection: d3.Selection<SVGElement | null, unknown, null, undefined>
 ) => void;
 
@@ -22,6 +23,7 @@ export default function useD3({
 
   React.useEffect(() => {
     if (ref.current) {
+      // @ts-ignore
       renderChartFn(d3.select(ref.current));
     }
     return () => {};
