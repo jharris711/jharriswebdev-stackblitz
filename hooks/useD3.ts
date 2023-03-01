@@ -1,13 +1,13 @@
 import * as React from 'react';
 import * as d3 from 'd3';
 
-type RenderChartFn = (
+type renderFn = (
   // @ts-ignore
   selection: d3.Selection<SVGElement | null, unknown, null, undefined>
 ) => void;
 
 interface UseD3Props {
-  renderChartFn: RenderChartFn;
+  renderFn: renderFn;
   dependencies: React.DependencyList;
 }
 
@@ -16,7 +16,7 @@ interface UseD3Return {
 }
 
 export default function useD3({
-  renderChartFn,
+  renderFn,
   dependencies,
 }: UseD3Props): UseD3Return {
   const ref = React.useRef<SVGElement>(null);
@@ -24,7 +24,7 @@ export default function useD3({
   React.useEffect(() => {
     if (ref.current) {
       // @ts-ignore
-      renderChartFn(d3.select(ref.current));
+      renderFn(d3.select(ref.current));
     }
     return () => {};
   }, dependencies);
