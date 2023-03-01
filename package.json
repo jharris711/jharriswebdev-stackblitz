@@ -16,6 +16,7 @@
     "@types/leaflet.locatecontrol": "^0.74.1",
     "@types/react": "18.0.28",
     "@types/react-dom": "18.0.11",
+    "@types/react-swipeable-views": "^0.13.1",
     "d3": "^7.8.2",
     "leaflet": "^1.9.0",
     "leaflet-routing-machine": "^3.2.12",
@@ -25,6 +26,7 @@
     "react-leaflet": "^4.2.0",
     "react-native": "0.71.3",
     "react-redux": "8.0.5",
+    "react-swipeable-views": "^0.13.5",
     "redux": "4.2.1"
   },
   "scripts": {
