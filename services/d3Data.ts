@@ -7,9 +7,8 @@ export const d3DataApi = createApi({
   endpoints: (builder) => ({
     getCalendarHeatmapData: builder.query<any, string>({
       query: () => `ce53189b59faa1e922ff`,
-      transformResponse: (response: { data: Post }, meta, arg) => {
-        console.log(response.data);
-        return response.data;
+      transformResponse: (response: { data: any }, meta, arg) => {
+        return response;
       },
     }),
   }),
