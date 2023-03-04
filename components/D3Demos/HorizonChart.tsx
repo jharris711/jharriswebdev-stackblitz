@@ -97,7 +97,7 @@ const HorizonChart: React.FC<Props> = ({ bands, colorScheme, data }) => {
   };
 
   const xAxisDeps: React.DependencyList = [data.length, colorScheme, bands];
-  const { ref: xAxisRef } = useD3({
+  const { ref: xAxisRef } = useD3<SVGGElement>({
     renderFn: renderXAxis,
     dependencies: xAxisDeps,
   });
@@ -156,7 +156,7 @@ const HorizonChart: React.FC<Props> = ({ bands, colorScheme, data }) => {
   };
 
   const chartDeps: React.DependencyList = [data.length, colorScheme, bands];
-  const { ref: chartRef } = useD3({
+  const { ref: chartRef } = useD3<SVGGElement>({
     renderFn: renderChart,
     dependencies: chartDeps,
   });

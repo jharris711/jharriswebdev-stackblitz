@@ -1,14 +1,8 @@
 import * as React from 'react';
-import * as d3 from 'd3';
+import { select, Selection } from 'd3';
 
 type renderFn = (
-  // @ts-ignore
-  selection: d3.Selection<
-    SVGElement | SVGGElement | null,
-    unknown,
-    null,
-    undefined
-  >
+  selection: Selection<SVGElement | null, unknown, null, undefined>
 ) => void;
 
 interface UseD3Props {
@@ -16,20 +10,19 @@ interface UseD3Props {
   dependencies: React.DependencyList;
 }
 
-interface UseD3Return {
-  ref: React.RefObject<SVGElement | SVGGElement>;
+interface UseD3Return<E extends SVGElement> {
+  ref: React.RefObject<E>;
 }
 
-export default function useD3({
+export default function useD3<E extends SVGElement>({
   renderFn,
   dependencies,
-}: UseD3Props): UseD3Return {
-  const ref = React.useRef<SVGElement>(null);
+}: UseD3Props): UseD3Return<E> {
+  const ref = React.useRef<E>(null);
 
   React.useEffect(() => {
     if (ref.current) {
-      // @ts-ignore
-      renderFn(d3.select(ref.current));
+      renderFn(select(ref.current));
     }
     return () => {};
   }, dependencies);

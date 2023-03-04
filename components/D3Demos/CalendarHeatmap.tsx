@@ -134,7 +134,7 @@ const CalendarHeatmap: React.FC<Props> = ({ data }) => {
       .text(formatMonth);
   };
 
-  const { ref } = useD3({
+  const { ref } = useD3<SVGSVGElement>({
     renderFn: renderCalHeatmap,
     dependencies: [data.length],
   });
