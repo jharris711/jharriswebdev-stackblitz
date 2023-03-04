@@ -1,8 +1,9 @@
 import * as React from 'react';
-import { select, Selection } from 'd3';
+import * as d3 from 'd3';
 
 type renderFn = (
-  selection: Selection<SVGElement | null, unknown, null, undefined>
+  // @ts-ignore
+  selection: d3.Selection<SVGElement | null, unknown, null, undefined>
 ) => void;
 
 interface UseD3Props {
@@ -22,7 +23,8 @@ export default function useD3<E extends SVGElement>({
 
   React.useEffect(() => {
     if (ref.current) {
-      renderFn(select(ref.current));
+      // @ts-ignore
+      renderFn(d3.select(ref.current));
     }
     return () => {};
   }, dependencies);
