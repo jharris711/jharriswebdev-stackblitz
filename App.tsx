@@ -17,16 +17,24 @@ import Resume from './components/Resume';
 import LeafletMap from './components/LeafletMap';
 import D3Demos from './components/D3Demos';
 import { useAppSelector, useAppDispatch } from './app/hooks';
-import { useGetCalendarHeatmapDataQuery } from './services/d3Data';
+import {
+  useGetCalendarHeatmapDataQuery,
+  useGetHorizonChartDataQuery,
+} from './services/d3Data';
 import './style.css';
 
 export default function App() {
   const { activeButton } = useAppSelector((state) => state.menu);
   const {
     data: calendarHeatmapData,
-    error,
-    isLoading,
+    error: calendarHeatmapError,
+    isLoading: calendarHeatmapLoading,
   } = useGetCalendarHeatmapDataQuery('');
+  const {
+    data: horizonChartData,
+    error: horizonChartError,
+    isLoading: horizonChartLoading,
+  } = useGetHorizonChartDataQuery('');
 
   return (
     <Box
@@ -86,7 +94,10 @@ export default function App() {
         {activeButton === 'leaflet' ? (
           <LeafletMap />
         ) : activeButton === 'd3' ? (
-          <D3Demos calendarHeatmapData={calendarHeatmapData} />
+          <D3Demos
+            calendarHeatmapData={calendarHeatmapData}
+            horizonChartData={horizonChartData}
+          />
         ) : activeButton === 'resume' ? (
           <Resume />
         ) : (

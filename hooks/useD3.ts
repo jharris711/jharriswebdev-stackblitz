@@ -3,7 +3,12 @@ import * as d3 from 'd3';
 
 type renderFn = (
   // @ts-ignore
-  selection: d3.Selection<SVGElement | null, unknown, null, undefined>
+  selection: d3.Selection<
+    SVGElement | SVGGElement | null,
+    unknown,
+    null,
+    undefined
+  >
 ) => void;
 
 interface UseD3Props {
@@ -12,7 +17,7 @@ interface UseD3Props {
 }
 
 interface UseD3Return {
-  ref: React.RefObject<SVGElement>;
+  ref: React.RefObject<SVGElement | SVGGElement>;
 }
 
 export default function useD3({

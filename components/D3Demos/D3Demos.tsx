@@ -9,18 +9,19 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import pick from '@cahil/utils/accessors/pick';
 import CalendarHeatmap from './CalendarHeatmap';
-
-interface CalendarHeatmapData {
-  id: string;
-  eventTimestamp: string;
-  numEvents: number;
-}
+import HorizonChart from './HorizonChart';
+import { CalendarHeatmapData, HorizonChartData } from '../../types';
 
 interface TabPanelProps {
   children?: React.ReactNode;
   dir?: string;
   index: number;
   value: number;
+}
+
+interface Props {
+  calendarHeatmapData: CalendarHeatmapData[];
+  horizonChartData: HorizonChartData[];
 }
 
 function TabPanel(props: TabPanelProps) {
@@ -50,7 +51,10 @@ function a11yProps(index: number) {
   };
 }
 
-function D3Demos({ calendarHeatmapData }) {
+const D3Demos: React.FC<Props> = ({
+  calendarHeatmapData,
+  horizonChartData,
+}) => {
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
 
@@ -70,18 +74,25 @@ function D3Demos({ calendarHeatmapData }) {
           aria-label="full width tabs example"
         >
           <Tab label="Calendar Heatmap" {...a11yProps(0)} />
-          <Tab label="Item Two" {...a11yProps(1)} />
+          <Tab label="Horizon Chart" {...a11yProps(1)} />
           <Tab label="Item Three" {...a11yProps(2)} />
         </Tabs>
         <TabPanel value={value} index={0} dir={theme.direction}>
-          <Box>
+          <Box
+            id="calendar-heatmap-box"
+            sx={{
+              // @ts-ignore
+              padding: theme.spacing(1),
+              maxHeight: '200px',
+              overflow: 'scroll',
+            }}
+          >
             <CalendarHeatmap data={calendarHeatmapData} />
           </Box>
-          <Box>
-            <Divider />
+          <Divider />
+          <Box id="calendar-heatmap-json-display-box">
             <Typography variant="h6">Data:</Typography>
             <Paper
-              id="calendar-heatmap-json-display"
               elevation={2}
               sx={{
                 padding: theme.spacing(1),
@@ -104,7 +115,44 @@ function D3Demos({ calendarHeatmapData }) {
           </Box>
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
-          Item Two
+          <Box
+            sx={{
+              padding: theme.spacing(1),
+              maxHeight: '200px',
+              overflow: 'scroll',
+            }}
+          >
+            <HorizonChart
+              bands={3}
+              colorScheme={'GnBu'}
+              data={horizonChartData}
+            />
+          </Box>
+          <Box>
+            <Divider />
+            <Typography variant="h6">Data:</Typography>
+            <Paper
+              id="horizon-chart-json-display"
+              elevation={2}
+              sx={{
+                padding: theme.spacing(1),
+                maxHeight: '250px',
+                overflow: 'scroll',
+              }}
+            >
+              <pre>
+                <code>
+                  {JSON.stringify(
+                    horizonChartData.map((data: HorizonChartData) =>
+                      pick(data, 'date', 'name', 'value')
+                    ),
+                    null,
+                    2
+                  )}
+                </code>
+              </pre>
+            </Paper>
+          </Box>
         </TabPanel>
         <TabPanel value={value} index={2} dir={theme.direction}>
           Item Three
@@ -112,6 +160,6 @@ function D3Demos({ calendarHeatmapData }) {
       </Card>
     </React.Fragment>
   );
-}
+};
 
 export default D3Demos;

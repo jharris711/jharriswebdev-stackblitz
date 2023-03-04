@@ -11,9 +11,16 @@ export const d3DataApi = createApi({
         return response;
       },
     }),
+    getHorizonChartData: builder.query<any, string>({
+      query: () => `565ec3d1cfa8f3d509d9`,
+      transformResponse: (response: { data: any }, meta, arg) => {
+        return response;
+      },
+    }),
   }),
 });
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useGetCalendarHeatmapDataQuery } = d3DataApi;
+export const { useGetCalendarHeatmapDataQuery, useGetHorizonChartDataQuery } =
+  d3DataApi;

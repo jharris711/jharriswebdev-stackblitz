@@ -1,29 +1,24 @@
 import * as React from 'react';
 import * as d3 from 'd3';
-import { Selection } from 'd3-selection';
 import { useD3 } from '../../hooks';
+import { CalendarHeatmapData } from '../../types';
 
-interface CalendarHeatmapData {
-  id: string;
-  eventTimestamp: string;
-  numEvents: number;
+interface Props {
+  data: CalendarHeatmapData[];
 }
 
-function CalendarHeatmap({ data }) {
-  React.useEffect(() => {
-    console.log(data);
-  }, [data]);
+const cellSize = 20;
+const width = 928;
+const colors = d3.interpolatePiYG;
+const countDay = (i: number) => i;
+const timeWeek = d3.utcSunday;
+const weekDays = 7;
+const height: number = cellSize * (weekDays + 2);
+const formatDay: (i: number) => string = (i) => 'SMTWTFS'[i];
 
-  const cellSize = 20;
-  const width = 928;
+const CalendarHeatmap: React.FC<Props> = ({ data }) => {
   const x = (d: CalendarHeatmapData) => new Date(d.eventTimestamp);
   const y = (d: CalendarHeatmapData) => d.numEvents;
-  const colors = d3.interpolatePiYG;
-  const countDay = (i: number) => i;
-  const timeWeek = d3.utcSunday;
-  const weekDays = 7;
-  const height: number = cellSize * (weekDays + 2);
-  const formatDay: (i: number) => string = (i) => 'SMTWTFS'[i];
 
   // Compute values.
   const X = d3.map(data, x);
@@ -65,7 +60,9 @@ function CalendarHeatmap({ data }) {
     }V${weekDays * cellSize}`;
   }
 
-  const renderCalHeatmap = (svg: Selection<any, any, any, any>) => {
+  const renderCalHeatmap = (
+    svg: d3.Selection<SVGElement | null, unknown, null, undefined>
+  ) => {
     const year = svg
       .selectAll('g')
       .data(years)
@@ -161,6 +158,6 @@ function CalendarHeatmap({ data }) {
       />
     </React.Fragment>
   );
-}
+};
 
 export default CalendarHeatmap;
