@@ -9,48 +9,49 @@ interface Props {
 
 const cellSize = 20;
 const width = 928;
-const colors = d3.interpolatePiYG;
-const countDay = (i: number) => i;
-const timeWeek = d3.utcSunday;
+const colors =
+  d3.interpolatePiYG as d3.InterpolatorFactory<d3.ColorCommonInstance>;
+const countDay = (i: number): number => i;
+const timeWeek: d3.CountableTimeInterval = d3.utcSunday;
 const weekDays = 7;
 const height: number = cellSize * (weekDays + 2);
-const formatDay: (i: number) => string = (i) => 'SMTWTFS'[i];
+const formatDay = (i: number): string => 'SMTWTFS'[i];
 
 const CalendarHeatmap: React.FC<Props> = ({ data }) => {
   const x = (d: CalendarHeatmapData) => new Date(d.eventTimestamp);
   const y = (d: CalendarHeatmapData) => d.numEvents;
 
   // Compute values.
-  const X = d3.map(data, x);
-  const Y = d3.map(data, y);
-  const I = d3.range(X.length);
+  const X: d3.Map<string> = d3.map(data, x);
+  const Y: d3.Map<string> = d3.map(data, y);
+  const I: number[] = d3.range(X.length);
 
   // Compute a color scale. This assumes a diverging color scheme where the pivot
   // is zero, and we want symmetric difference around zero.
-  const max = d3.quantile(Y, 0.9975, Math.abs);
-  const color = d3.scaleSequential([-max, +max], colors).unknown('none');
+  const max: number = d3.quantile(Y, 0.9975, Math.abs);
+  const color: d3.ScaleSequential<any> = d3
+    .scaleSequential([-max, +max], colors)
+    .unknown('none');
 
   // Construct formats.
-  const formatMonth = d3.utcFormat('%b');
+  const formatMonth: (date: Date) => string = d3.utcFormat('%b');
 
-  let title: undefined | ((i: number) => string);
+  let title: (i: number) => string = (i: number) => '';
+
   // Compute titles.
-  if (title === undefined) {
-    const formatDate = d3.utcFormat('%B %-d, %Y');
-    const formatValue = color.tickFormat(100, null);
-    title = (i: number) => `${formatDate(X[i])}\n${formatValue(Y[i])}`;
-  } else if (title !== null) {
-    const T = d3.map(data, title);
-    title = (i: number) => T[i];
-  }
+  const formatDate: (date: Date) => string = d3.utcFormat('%B %-d, %Y');
+  const formatValue: (value: number) => string = color.tickFormat(100, null);
+  title = (i: number): string => `${formatDate(X[i])}\n${formatValue(Y[i])}`;
 
   // Group the index by year, in reverse input order. (Assuming that the input is
   // chronological, this will show years in reverse chronological order.)
-  const years = d3.groups(I, (i: number) => X[i].getUTCFullYear()).reverse();
+  const years: Array<[string, number[]]> = d3
+    .groups(I, (i: number): Date => X[i].getUTCFullYear())
+    .reverse();
 
-  function pathMonth(t: Date) {
-    const d = Math.max(0, Math.min(weekDays, countDay(t.getUTCDay())));
-    const w = timeWeek.count(d3.utcYear(t), t);
+  function pathMonth(t: Date): string {
+    const d: number = Math.max(0, Math.min(weekDays, countDay(t.getUTCDay())));
+    const w: number = timeWeek.count(d3.utcYear(t), t);
     return `${
       d === 0
         ? `M${w * cellSize},0`
@@ -89,7 +90,7 @@ const CalendarHeatmap: React.FC<Props> = ({ data }) => {
       .data(d3.range(7))
       .join('text')
       .attr('x', -5)
-      .attr('y', (i) => (countDay(i) + 0.5) * cellSize)
+      .attr('y', (i: number): number => (countDay(i) + 0.5) * cellSize)
       .attr('dy', '0.31em')
       .attr('stroke', '#fff')
       .attr('fill', '#fff')
@@ -102,9 +103,16 @@ const CalendarHeatmap: React.FC<Props> = ({ data }) => {
       .join('rect')
       .attr('width', cellSize - 1)
       .attr('height', cellSize - 1)
-      .attr('x', (i) => timeWeek.count(d3.utcYear(X[i]), X[i]) * cellSize + 0.5)
-      .attr('y', (i) => countDay(X[i].getUTCDay()) * cellSize + 0.5)
-      .attr('fill', (i) => color(Y[i]));
+      .attr(
+        'x',
+        (i: number): number =>
+          timeWeek.count(d3.utcYear(X[i]), X[i]) * cellSize + 0.5
+      )
+      .attr(
+        'y',
+        (i: number): number => countDay(X[i].getUTCDay()) * cellSize + 0.5
+      )
+      .attr('fill', (i: number): string => color(Y[i]));
 
     if (title) cell.append('title').text(title);
 
@@ -115,7 +123,7 @@ const CalendarHeatmap: React.FC<Props> = ({ data }) => {
       .join('g');
 
     month
-      .filter((d, i) => i)
+      .filter((d: any, i: number) => i)
       .append('path')
       .attr('fill', 'none')
       .attr('stroke', 'white')
@@ -126,7 +134,8 @@ const CalendarHeatmap: React.FC<Props> = ({ data }) => {
       .append('text')
       .attr(
         'x',
-        (d) => timeWeek.count(d3.utcYear(d), timeWeek.ceil(d)) * cellSize + 2
+        (d: string): number =>
+          timeWeek.count(d3.utcYear(d), timeWeek.ceil(d)) * cellSize + 2
       )
       .attr('y', -5)
       .attr('stroke', '#fff')
