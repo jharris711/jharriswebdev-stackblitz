@@ -38,11 +38,8 @@ const HorizonChart: React.FC<Props> = ({ bands, colorScheme, data }) => {
 
   // Compute values.
   const X: d3.Map<string> = d3.map(data, x);
-  console.log('X', X);
   const Y: d3.Map<number> = d3.map(data, y);
-  console.log('Y', Y);
   const Z: d3.Map<string> = d3.map(data, z);
-  console.log('Z', Z);
   if (defined === undefined) defined = (d, i) => !isNaN(X[i]) && !isNaN(Y[i]);
   const D: d3.Map<boolean> = d3.map(data, defined);
   console.log('D', D);
