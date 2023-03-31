@@ -1,14 +1,8 @@
 import * as React from 'react';
-import Grid from '@mui/material/Grid';
-import Fab from '@mui/material/Fab';
-import AddIcon from '@mui/icons-material/Add';
-import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import Typography from '@mui/material/Typography';
 import { Theme } from '@mui/material';
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
 import { setActiveButton } from './menuSlice';
@@ -50,13 +44,13 @@ function Menu() {
                     : '',
               }}
               onClick={(e: React.SyntheticEvent) =>
-                dispatch(setActiveButton(e.target.value))
+                dispatch(setActiveButton((e.target as HTMLButtonElement).value))
               }
               value="leaflet"
             >
               leaflet
             </Button>
-            <Button
+            {/* <Button
               sx={{
                 width: '100%',
                 color: (theme: Theme) =>
@@ -69,12 +63,12 @@ function Menu() {
                     : '',
               }}
               onClick={(e: React.SyntheticEvent) =>
-                dispatch(setActiveButton(e.target.value))
+                dispatch(setActiveButton((e.target as HTMLButtonElement).value))
               }
               value="openai"
             >
               OpenAI
-            </Button>
+            </Button> */}
             <Button
               sx={{
                 width: '100%',
@@ -86,7 +80,7 @@ function Menu() {
                   activeButton === 'd3' ? theme.palette.action.selected : '',
               }}
               onClick={(e: React.SyntheticEvent) =>
-                dispatch(setActiveButton(e.target.value))
+                dispatch(setActiveButton((e.target as HTMLButtonElement).value))
               }
               value="d3"
             >
@@ -105,7 +99,7 @@ function Menu() {
                     : '',
               }}
               onClick={(e: React.SyntheticEvent) =>
-                dispatch(setActiveButton(e.target.value))
+                dispatch(setActiveButton((e.target as HTMLButtonElement).value))
               }
               value="resume"
             >

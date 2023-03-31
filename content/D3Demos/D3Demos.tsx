@@ -75,7 +75,6 @@ const D3Demos: React.FC<Props> = ({
         >
           <Tab label="Calendar Heatmap" {...a11yProps(0)} />
           <Tab label="Horizon Chart" {...a11yProps(1)} />
-          <Tab label="Item Three" {...a11yProps(2)} />
         </Tabs>
         <TabPanel value={value} index={0} dir={theme.direction}>
           <Box
@@ -153,9 +152,6 @@ const D3Demos: React.FC<Props> = ({
               </pre>
             </Paper>
           </Box>
-        </TabPanel>
-        <TabPanel value={value} index={2} dir={theme.direction}>
-          Item Three
         </TabPanel>
       </Card>
     </React.Fragment>

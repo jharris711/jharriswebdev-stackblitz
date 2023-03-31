@@ -1,6 +1,5 @@
 import * as React from 'react';
 import * as d3 from 'd3';
-import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import { useD3 } from '../../hooks';
 import { HorizonChartData } from '../../types';

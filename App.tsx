@@ -1,16 +1,6 @@
 import * as React from 'react';
-import Grid from '@mui/material/Grid';
-import Fab from '@mui/material/Fab';
-import AddIcon from '@mui/icons-material/Add';
 import Box from '@mui/material/Box';
-import Card from '@mui/material/Card';
-import Button from '@mui/material/Button';
-import ButtonGroup from '@mui/material/ButtonGroup';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import Typography from '@mui/material/Typography';
 import { Theme } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
 import Header from './components/Header';
 import Menu from './components/Menu';
 import Resume from './content/Resume';
@@ -49,8 +39,6 @@ export default function App() {
         padding: `40px`,
         overflow: `hidden`,
         backgroundColor: (theme: Theme) => theme.palette.background.default,
-        /* border: '2px solid grey',
-          borderRadius: '5px', */
       }}
     >
       <Box
@@ -60,11 +48,6 @@ export default function App() {
           gridRow: 1,
           height: '250px',
           width: '100%',
-          /* display: 'flex',
-            justifyContent: 'space-around',
-            textAlign: 'center', */
-          /* border: '2px solid grey',
-            borderRadius: '5px', */
         }}
       >
         <Header />
@@ -73,8 +56,6 @@ export default function App() {
         id="menu-column"
         sx={{
           gridColumn: `1`,
-          /* border: '2px solid grey',
-            borderRadius: '5px', */
           display: 'block',
           justifyContent: 'center',
           width: '100%',
@@ -85,9 +66,7 @@ export default function App() {
       <Box
         id="content-column"
         sx={{
-          gridColumn: `2 / span 2` /* 
-            border: '2px solid grey',
-            borderRadius: '5px', */,
+          gridColumn: `2 / span 2`,
           overflow: 'hidden',
         }}
       >
