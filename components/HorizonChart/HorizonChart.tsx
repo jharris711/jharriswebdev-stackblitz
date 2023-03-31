@@ -168,8 +168,8 @@ const HorizonChart: React.FC<Props> = ({ bands, colorScheme, data }) => {
       >
         <svg
           id="svg-container"
-          width={width}
-          height={height}
+          width="100%"
+          height="100%"
           viewBox={`${[0, 0, width, height]}`}
           style={{
             maxWidth: '100%',
