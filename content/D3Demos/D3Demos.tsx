@@ -8,8 +8,8 @@ import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import pick from '@cahil/utils/accessors/pick';
-import CalendarHeatmap from '../components/CalendarHeatmap';
-import HorizonChart from '../components/HorizonChart';
+import CalendarHeatmap from '../../components/CalendarHeatmap';
+import HorizonChart from '../../components/HorizonChart';
 import { CalendarHeatmapData, HorizonChartData } from '../../types';
 
 interface TabPanelProps {

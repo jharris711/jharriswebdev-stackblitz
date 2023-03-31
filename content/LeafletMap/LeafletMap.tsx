@@ -19,11 +19,8 @@ import {
   FeatureGroup,
 } from 'react-leaflet';
 import { createControlComponent } from '@react-leaflet/core';
-import {
-  GeomanControl,
-  RoutingMachineControl,
-  LocateControl,
-} from './controls';
+import { RoutingMachineControl, LocateControl } from './controls';
+import { GeomanControl } from '../../compnents/GeomanControl';
 
 function LeafletMap() {
   React.useEffect(() => {

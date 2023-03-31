@@ -1,15 +1,9 @@
 import * as React from 'react';
-import Grid from '@mui/material/Grid';
-import Fab from '@mui/material/Fab';
-import AddIcon from '@mui/icons-material/Add';
-import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import Button from '@mui/material/Button';
-import ButtonGroup from '@mui/material/ButtonGroup';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import { Theme } from '@mui/material';
 
 function JobDesc({ employer, position, date, description }) {
   return (
