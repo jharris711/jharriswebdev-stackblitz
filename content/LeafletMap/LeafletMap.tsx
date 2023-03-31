@@ -20,7 +20,7 @@ import {
 } from 'react-leaflet';
 import { createControlComponent } from '@react-leaflet/core';
 import { RoutingMachineControl, LocateControl } from './controls';
-import { GeomanControl } from '../../components/GeomanControl';
+import GeomanControl from '../../components/GeomanControl';
 
 function LeafletMap() {
   React.useEffect(() => {

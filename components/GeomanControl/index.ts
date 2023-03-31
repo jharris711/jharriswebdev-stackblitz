@@ -1,2 +1,2 @@
 import GeomanControl from './GeomanControl';
-export { GeomanControl };
+export default GeomanControl;

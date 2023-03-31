@@ -27,4 +27,6 @@ const createGeomanInstance = (props: Props) => {
   return new Geoman(props);
 };
 
-export const GeomanControl = createControlComponent(createGeomanInstance);
+const GeomanControl = createControlComponent(createGeomanInstance);
+
+export default GeomanControl;
