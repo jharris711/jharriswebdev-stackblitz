@@ -16,6 +16,8 @@ function createRoutineMachineInstance(props: P) {
   return instance;
 }
 
-export const RoutingMachineControl = createControlComponent(
+const RoutingMachineControl = createControlComponent(
   createRoutineMachineInstance
 );
+
+export default RoutingMachineControl;

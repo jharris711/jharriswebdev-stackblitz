@@ -7,6 +7,8 @@ const { Locate } = L.Control;
 
 interface P extends L.ControlOptions {}
 
-export const LocateControl = createControlComponent((props: P) => {
+const LocateControl = createControlComponent((props: P) => {
   return new Locate(props);
 });
+
+export default LocateControl;
