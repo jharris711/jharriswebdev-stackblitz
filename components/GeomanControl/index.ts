@@ -1,2 +1,2 @@
-import { GeomanControl } from './GeomanControl';
-export GeomanControl;
+import GeomanControl from './GeomanControl';
+export { GeomanControl };
