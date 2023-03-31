@@ -15,7 +15,7 @@ import Header from './components/Header';
 import Menu from './components/Menu';
 import Resume from './components/Resume';
 import LeafletMap from './components/LeafletMap';
-import D3Demos from './components/D3Demos';
+import D3Demos from './content/D3Demos';
 import { useAppSelector, useAppDispatch } from './app/hooks';
 import {
   useGetCalendarHeatmapDataQuery,
