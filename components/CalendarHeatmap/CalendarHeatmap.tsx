@@ -157,8 +157,7 @@ const CalendarHeatmap: React.FC<Props> = ({ data }) => {
         viewBox={`[0, 0, ${width}, ${height * years.length}]`}
         style={{
           maxWidth: '100%',
-          height: 'auto',
-          height: 'intrinsic',
+          height: 'auto intrinsic',
           backgroundColor: 'black',
         }}
         fontFamily={'sans-serif'}
