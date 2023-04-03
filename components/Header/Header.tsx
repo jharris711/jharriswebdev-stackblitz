@@ -18,7 +18,7 @@ function Header() {
       >
         <CardContent>
           <Typography variant="h1" color="text.secondary">
-            <strong>J. Harris</strong>
+            <strong>Josh Harris</strong>
           </Typography>
           <Typography variant="h5" component="div">
             Web &#38; Software Developer
