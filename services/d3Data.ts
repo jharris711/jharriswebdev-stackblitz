@@ -11,9 +11,9 @@ export const d3DataApi = createApi({
         return response;
       },
     }),
-    getHorizonChartData: builder.query<any, string>({
+    getHorizonChartData: builder.query<Record<string, any>[], string>({
       query: () => `565ec3d1cfa8f3d509d9`,
-      transformResponse: (response: { data: any }, meta, arg) => {
+      transformResponse: (response: Record<string, any>[], meta, arg) => {
         return response;
       },
     }),
