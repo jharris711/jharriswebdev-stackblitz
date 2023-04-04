@@ -1,26 +1,24 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { CalendarHeatmapData, HorizonChartData } from '../types';
 
-// Define a service using a base URL and expected endpoints
 export const d3DataApi = createApi({
   reducerPath: 'd3DataApi',
   baseQuery: fetchBaseQuery({ baseUrl: 'https://api.npoint.io/' }),
   endpoints: (builder) => ({
-    getCalendarHeatmapData: builder.query<any, string>({
+    getCalendarHeatmapData: builder.query<CalendarHeatmapData[], string>({
       query: () => `ce53189b59faa1e922ff`,
-      transformResponse: (response: { data: any }, meta, arg) => {
+      transformResponse: (response: CalendarHeatmapData[], meta, arg) => {
         return response;
       },
     }),
-    getHorizonChartData: builder.query<Record<string, any>[], string>({
+    getHorizonChartData: builder.query<HorizonChartData[], string>({
       query: () => `565ec3d1cfa8f3d509d9`,
-      transformResponse: (response: Record<string, any>[], meta, arg) => {
+      transformResponse: (response: HorizonChartData[], meta, arg) => {
         return response;
       },
     }),
   }),
 });
 
-// Export hooks for usage in functional components, which are
-// auto-generated based on the defined endpoints
 export const { useGetCalendarHeatmapDataQuery, useGetHorizonChartDataQuery } =
   d3DataApi;
